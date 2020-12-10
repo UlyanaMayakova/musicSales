@@ -31,8 +31,8 @@ fun main() {
     if (totalSum <= 1000) {
         if (isMeloman) {
             withSaleSum = purchaseSum * withExtraSale
-            withSaleSum = (withSaleSum * 100).roundToInt().toDouble() / 100
-            println("К оплате $withSaleSum после применения скидки меломана 1%")
+            round(withSaleSum)
+            printMelomanSale(withSaleSum)
         } else {
             println("К оплате $purchaseSum")
         }
@@ -41,19 +41,23 @@ fun main() {
         println("К оплате $withSaleSum после применения скидки 100 рублей")
         if (isMeloman) {
             withSaleSum *= withExtraSale
-            withSaleSum = (withSaleSum * 100).roundToInt().toDouble() / 100
-            println("К оплате $withSaleSum после применения скидки меломана 1%")
+            round(withSaleSum)
+            printMelomanSale(withSaleSum)
         }
     } else if (totalSum > 10_000) {
         withSaleSum = purchaseSum * withFivePercentSale
-        withSaleSum = (withSaleSum * 100).roundToInt().toDouble() / 100
+        round(withSaleSum)
         println("К оплате $withSaleSum после применения скидки 5%")
         if (isMeloman) {
             withSaleSum *= withExtraSale
-            withSaleSum = (withSaleSum * 100).roundToInt().toDouble() / 100
-            println("К оплате $withSaleSum после применения скидки меломана 1%")
+            round(withSaleSum)
+            printMelomanSale(withSaleSum)
         }
     }
 
     totalSum += purchaseSum
 }
+
+fun round(withSaleSum: Double) = (withSaleSum * 100).roundToInt().toDouble() / 100
+
+fun printMelomanSale(withSaleSum: Double) = println("К оплате $withSaleSum после применения скидки меломана 1%")
